@@ -64,7 +64,7 @@ void InsertNode() {
 	printf("请输入学生个数");
 	scanf("%d",&x);
 	for (int i = 1;i <= x; i++) {
-		printf("请输入姓名，年龄，电话，住址");
+		printf("请输入第%d个同学姓名，年龄，电话，住址",i);
 		scanf("%s%d%s%s", S.name, S.age, S.tel, S.addr);
 		CreatNodeList(StudentNode,S);
 	}
