@@ -8,6 +8,7 @@ void InsertNode();
 struct Node* CreatNode();
 struct Node* CreatNewNode(struct Student data);
 void CreatNodeList(struct Node* HeadNode, struct Student data);
+void deletestudent();
 void deletenode(struct Node* headnode, char* name);
 void PrintNode(struct Node* StudentNode);
 struct Node* StudentNode;
@@ -33,15 +34,10 @@ void SystemMenu() {
 }
 void KeyRecive() {
 	int x;
-	//struct Student S;
 	scanf("%d", &x);
 	switch (x)
 	{
 	case 0:
-		//printf("\t\t【插入信息】\n");
-		//printf("请输入第个同学姓名，年龄，电话，住址");
-		//scanf("%s%d%s%s", &S.name, &S.age, &S.tel, &S.addr);
-		//CreatNodeList(StudentNode, S);
 		InsertNode();
 		break;
 	case 1:
@@ -50,6 +46,7 @@ void KeyRecive() {
 		break;
 	case 2:
 		printf("\t【删除信息】\n");
+		deletestudent();
 		break;
 	case 3:
 		printf("\t【修改信息】\n");
@@ -89,12 +86,17 @@ void CreatNodeList(struct Node* HeadNode, struct Student data) {
 	NewNode->Next = HeadNode->Next;
 	HeadNode->Next = NewNode;
  }
-
+void deletestudent() {
+	char name[10];
+	printf("请输入需要删除的学生名字");
+	scanf("%s",&name);
+	deletenode(StudentNode,name);
+}
 void deletenode(struct Node* headnode, char *name) {
 	struct Node* posnode = headnode->Next;
 	struct Node* posnodefront = headnode;
 	if (posnode == NULL) {
-		printf("链表为空，无法删除");
+		printf("数据为空，无法删除");
 
 	}
 	else
