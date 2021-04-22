@@ -43,13 +43,16 @@ void KeyRecive() {
 	case 1:
 		printf("\t【浏览信息】\n");
 		PrintNode(StudentNode);
+		printf("浏览完成");
 		break;
 	case 2:
 		printf("\t【删除信息】\n");
 		deletestudent();
+		printf("删除完成");
 		break;
 	case 3:
 		printf("\t【修改信息】\n");
+		printf("修改完成");
 		break;
 	case 4:
 		printf("\t【退出系统】\n");
@@ -121,14 +124,7 @@ void PrintNode(struct Node* StudentNode){
 int main(void) {
 	StudentNode = CreatNode();
 	SystemMenu();
-	KeyRecive();
-	//CreatNodeList(StudentNode, 1);
-	//CreatNodeList(StudentNode, 2);
-	//CreatNodeList(StudentNode, 3);
-	//PrintNode(StudentNode);
-	//DeleteNode(StudentNode,1);
-	//deletenode(StudentNode,1);
-	//PrintNode(StudentNode);
+	while (1) { KeyRecive(); }
 
 }
 	
