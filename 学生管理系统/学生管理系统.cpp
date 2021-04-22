@@ -21,7 +21,7 @@ void CreatNodeList(struct Node* HeadNode, int data) {
 	NewNode->Next = HeadNode->Next;
 	HeadNode->Next = NewNode;
  }
-bvoid SystemMenu(){}
+void SystemMenu(){}
 void DeleteNode(struct Node* StudentNode,int data){
 	if (StudentNode == NULL)return;
 	struct Node* FrontNode = StudentNode;
