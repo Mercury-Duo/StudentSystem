@@ -10,7 +10,7 @@ struct Node* CreatNewNode(struct Student data);
 void CreatNodeList(struct Node* HeadNode, struct Student data);
 void deletenode(struct Node* headnode, char* name);
 void PrintNode(struct Node* StudentNode);
-struct Node* StudentNode = CreatNode();
+struct Node* StudentNode;
 struct Student {
 	char name[20];//名字
 	int age;//年龄
@@ -33,11 +33,15 @@ void SystemMenu() {
 }
 void KeyRecive() {
 	int x;
+	//struct Student S;
 	scanf("%d", &x);
 	switch (x)
 	{
 	case 0:
-		printf("\t\t【插入信息】\n");
+		//printf("\t\t【插入信息】\n");
+		//printf("请输入第个同学姓名，年龄，电话，住址");
+		//scanf("%s%d%s%s", &S.name, &S.age, &S.tel, &S.addr);
+		//CreatNodeList(StudentNode, S);
 		InsertNode();
 		break;
 	case 1:
@@ -65,7 +69,7 @@ void InsertNode() {
 	scanf("%d",&x);
 	for (int i = 1;i <= x; i++) {
 		printf("请输入第%d个同学姓名，年龄，电话，住址",i);
-		scanf("%s%d%s%s", S.name, S.age, S.tel, S.addr);
+		scanf("%s%d%s%s", &S.name, &S.age, &S.tel, &S.addr);
 		CreatNodeList(StudentNode,S);
 	}
 }
@@ -113,9 +117,9 @@ void PrintNode(struct Node* StudentNode){
 	}
 }
 int main(void) {
+	StudentNode = CreatNode();
 	SystemMenu();
 	KeyRecive();
-	//struct Node* StudentNode = CreatNode();
 	//CreatNodeList(StudentNode, 1);
 	//CreatNodeList(StudentNode, 2);
 	//CreatNodeList(StudentNode, 3);
