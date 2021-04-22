@@ -5,6 +5,37 @@ struct Node {
 	int data;
 	struct Node* Next;
 };
+struct Student {
+
+};
+void SystemMenu() {
+	printf("-----------------------------学生信息管理系统--------------------------------------\n");
+	printf("\t\t\t1.\n");
+	printf("\t\t\t1.\n");
+	printf("\t\t\t1.\n");
+	printf("\t\t\t1.\n");
+	printf("-----------------------------------------------------------------------------------\n");
+
+}
+void KeyRecive() {
+	int x;
+	scanf("%d", &x);
+	switch (x)
+	{
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	default:printf("输入数据有误，重新输入");KeyRecive();
+		break;
+	}
+}
 struct Node* CreatNode() {
 	struct Node* HeadNode = (struct Node*)malloc(sizeof(struct Node));
 	HeadNode->Next = NULL;
@@ -21,18 +52,7 @@ void CreatNodeList(struct Node* HeadNode, int data) {
 	NewNode->Next = HeadNode->Next;
 	HeadNode->Next = NewNode;
  }
-//void SystemMenu(){}
-/*void DeleteNode(struct Node* StudentNode,int data){
-	struct Node* FrontNode = StudentNode;
-	struct Node* PosNode = StudentNode->Next;
-	while (PosNode->data != data) {
-		FrontNode->Next = PosNode;
-		PosNode = PosNode->Next;
-		}
 
-	FrontNode->Next = PosNode->Next;
-	free(PosNode);
-}*/
 void deletenode(struct Node* headnode, int x) {
 	struct Node* posnode = headnode->Next;
 	struct Node* posnodefront = headnode;
@@ -60,6 +80,7 @@ void PrintNode(struct Node* StudentNode){
 	}
 }
 int main(void) {
+	SystemMenu();
 	struct Node* StudentNode = CreatNode();
 	CreatNodeList(StudentNode, 1);
 	CreatNodeList(StudentNode, 2);
