@@ -39,19 +39,19 @@ void KeyRecive() {
 	case 0:
 		printf("\t\t【插入信息】\n");
 		InsertNode();
-
 		break;
 	case 1:
-		printf("\t\t【浏览信息】\n");
+		printf("\t【浏览信息】\n");
+		PrintNode(StudentNode);
 		break;
 	case 2:
-		printf("\t\t【删除信息】\n");
+		printf("\t【删除信息】\n");
 		break;
 	case 3:
-		printf("\t\t【修改信息】\n");
+		printf("\t【修改信息】\n");
 		break;
 	case 4:
-		printf("\t\t【退出系统】\n");
+		printf("\t【退出系统】\n");
 		exit(0);
 		break;
 	default:printf("输入数据有误，重新输入");KeyRecive();
@@ -59,7 +59,8 @@ void KeyRecive() {
 	}
 }
 void InsertNode() {
-	struct Student S;int x;
+    int x;
+	struct Student S;
 	printf("请输入学生个数");
 	scanf("%d",&x);
 	for (int i = 1;i <= x; i++) {
@@ -105,7 +106,7 @@ void deletenode(struct Node* headnode, char *name) {
 }
 void PrintNode(struct Node* StudentNode){
 	struct Node* pow = StudentNode->Next;
-	printf("姓名\t年龄\t电话\t住址");
+	printf("姓名\t年龄\t电话\t住址\n");
 	while(pow){
 		printf("%s\t%d\t%s\t%s\n",pow->data.name,pow->data.age,pow->data.tel,pow->data.addr);
 		pow = pow->Next;
@@ -113,11 +114,12 @@ void PrintNode(struct Node* StudentNode){
 }
 int main(void) {
 	SystemMenu();
+	KeyRecive();
 	//struct Node* StudentNode = CreatNode();
 	//CreatNodeList(StudentNode, 1);
 	//CreatNodeList(StudentNode, 2);
 	//CreatNodeList(StudentNode, 3);
-	PrintNode(StudentNode);
+	//PrintNode(StudentNode);
 	//DeleteNode(StudentNode,1);
 	//deletenode(StudentNode,1);
 	//PrintNode(StudentNode);
