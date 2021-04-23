@@ -139,15 +139,17 @@ void changenode(struct Node* S) {
 	}
 	else
 	{
-		while (!strcmp(posnode->data.name, name)) {
+		while (strcmp(posnode->data.name, name)) {
 			//posnodefront = posnode;
-			posnode = posnode->Next;
-			if (posnode == NULL) { printf("未找到指定位置，无法删除"); return; }
+			printf("请输入修改人的年龄电话地址");
+			scanf("%d%s%s", &posnode->data.age, &posnode->data.tel, &posnode->data.addr);
+			return;
 		}
 		//posnodefront->Next = posnode->Next;
 		//free(posnode);
-		printf("请输入修改人的年龄电话地址");
-		scanf("%d%s%s",&posnode->data.age,&posnode->data.tel,&posnode->data.addr);
+		
+		posnode = posnode->Next;
+		if (posnode == NULL) { printf("未找到指定位置，无法更改"); return; }
 	}
 }
 
