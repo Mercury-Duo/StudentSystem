@@ -120,8 +120,17 @@ void changenode(struct Node* S) {
 	printf("请输入需要修改人名字");
 	scanf("%s",&name);
 	struct Node* posnode = S->Next;
+	if(!strcmp(posnode->data.name,name)){
+		posnode = posnode->Next;
+	}
+	else
+	{
+		printf("请输入修改人的年龄电话地址");
+		scanf("%d%s%s", &S->data.age, &S->data.tel, &S->data.addr);
+	}
+
 	//struct Node* posnodefront =S;
-	if (posnode == NULL) {
+	/*if (posnode == NULL) {
 		printf("数据为空，无法修改");
 
 	}
@@ -136,7 +145,7 @@ void changenode(struct Node* S) {
 		//free(posnode);
 		printf("请输入修改人的年龄电话地址");
 		scanf("%d%s%s",&S->data.age,&S->data.tel,&S->data.addr);
-	}
+	}*/
 }
 
 
