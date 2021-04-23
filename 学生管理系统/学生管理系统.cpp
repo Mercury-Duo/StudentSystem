@@ -10,6 +10,7 @@ struct Node* CreatNewNode(struct Student data);
 void CreatNodeList(struct Node* HeadNode, struct Student data);
 void deletestudent();
 void deletenode(struct Node* headnode, char* name);
+void changenode(struct Node* S, char* name);
 void PrintNode(struct Node* StudentNode);
 struct Node* StudentNode;
 struct Student {
@@ -113,6 +114,26 @@ void deletenode(struct Node* headnode, char *name) {
 		free(posnode);
 	}
 }
+void changenode(struct Node* S,char *name) {
+	struct Node* posnode = S->Next;
+	struct Node* posnodefront =S;
+	if (posnode == NULL) {
+		printf("数据为空，无法修改");
+
+	}
+	else
+	{
+		while (strcmp(posnode->data.name, name)) {
+			posnodefront = posnode;
+			posnode = posnodefront->Next;
+			if (posnode == NULL) { printf("未找到指定位置，无法删除"); return; }
+		}
+		posnodefront->Next = posnode->Next;
+		free(posnode);
+	}
+}
+
+
 void PrintNode(struct Node* StudentNode){
 	struct Node* pow = StudentNode->Next;
 	printf("姓名\t年龄\t电话\t住址\n");
