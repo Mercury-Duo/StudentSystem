@@ -10,7 +10,8 @@ struct Node* CreatNewNode(struct Student data);
 void CreatNodeList(struct Node* HeadNode, struct Student data);
 void deletestudent();
 void deletenode(struct Node* headnode, char* name);
-void changenode(struct Node* S);
+//struct Node* changenode(struct Node* S);
+struct Node* SearchNode(struct Node* StudentNode, char* name);
 void PrintNode(struct Node* StudentNode);
 struct Node* StudentNode;
 struct Student {
@@ -28,34 +29,40 @@ void SystemMenu() {
 	printf("\t\t\t0.插入信息\n");
 	printf("\t\t\t1.浏览信息\n");
 	printf("\t\t\t2.删除信息\n");
-	printf("\t\t\t3.修改信息\n");
-	printf("\t\t\t4.退出系统\n");
+	printf("\t\t\t3.查找信息\n");
+	printf("\t\t\t4.修改信息\n");
+	printf("\t\t\t5.退出系统\n");
 	printf("-----------------------------------------------------------------------------------\n");
 
 }
 void KeyRecive() {
-	int x;
+	int x;	char name[10];
+	struct Node* f;
 	scanf("%d", &x);
 	switch (x)
 	{
 	case 0:
 		InsertNode();
-		printf("插入成功！");
+		printf("插入操作执行成功！-------------");
 		break;
 	case 1:
 		printf("\t【浏览信息】\n");
 		PrintNode(StudentNode);
-		printf("浏览完成");
+		printf("浏览操作执行完成--------------");
 		break;
 	case 2:
 		printf("\t【删除信息】\n");
 		deletestudent();
-		printf("删除完成");
+		printf("删除操作执行完成---------------");
 		break;
 	case 3:
 		printf("\t【修改信息】\n");
-		changenode(StudentNode);
-		printf("修改完成");
+		printf("请输入需要删除的学生名字");
+		scanf("%s", &name);
+	f= SearchNode(StudentNode,name);
+	printf("请输入需要更改的年龄电话和地址");
+		scanf("%d%s%s",&f->data.age,&f->data.tel,&f->data.addr);
+		printf("修改操作执行完成---------------");
 		break;
 	case 4:
 		printf("\t【退出系统】\n");
@@ -116,45 +123,24 @@ void deletenode(struct Node* headnode, char *name) {
 		free(posnode);
 	}
 }
-void changenode(struct Node* S) {
-	char name[10];
-	printf("请输入需要修改人名字");
-	scanf("%s",&name);
-	struct Node* posnode = S->Next;
-	/*if (posnode == NULL) {
-		printf("数据为空，无法修改");
-	}
-	if(strcmp(posnode->data.name,name)){
-		printf("请输入修改人的年龄电话地址");
-		scanf("%d%s%s", &posnode->data.age, &posnode->data.tel, &posnode->data.addr);
+struct Node* SearchNode(struct Node* StudentNode, char* name) {
+	struct Node* pMove = StudentNode->Next;
+	if (pMove == NULL) { 
+		printf("未找到该学生");
+		return(pMove);
 	}
 	else
 	{
-		posnode = posnode->Next;
-	}
-*/
-	//struct Node* posnodefront =S;
-	if (posnode == NULL) {
-		printf("数据为空，无法修改");
-
-	}
-	else
-	{
-		while (strcmp(posnode->data.name, name)) {
-			//posnodefront = posnode;
-			printf("请输入修改人的年龄电话地址");
-			scanf("%d%s%s", &posnode->data.age, &posnode->data.tel, &posnode->data.addr);
-			return;
+		while (strcmp(pMove->data.name, name)) {
+			pMove = pMove->Next;
+			if (pMove == NULL)break;
 		}
-		//posnodefront->Next = posnode->Next;
-		//free(posnode);
-		
-		posnode = posnode->Next;
-		if (posnode == NULL) { printf("未找到指定位置，无法更改"); return; }
+		return pMove;
 	}
 }
-
-
+void PrintList(struct Node* StudentNode) {
+	printf("该学生的信息为%s%d%s%s",StudentNode->data.name,StudentNode->data.age,StudentNode->data.tel,StudentNode->data.addr);
+}
 void PrintNode(struct Node* StudentNode){
 	struct Node* pow = StudentNode->Next;
 	printf("姓名\t年龄\t电话\t住址\n");
