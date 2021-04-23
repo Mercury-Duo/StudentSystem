@@ -120,23 +120,26 @@ void changenode(struct Node* S) {
 	printf("请输入需要修改人名字");
 	scanf("%s",&name);
 	struct Node* posnode = S->Next;
-	if(!strcmp(posnode->data.name,name)){
-		posnode = posnode->Next;
+	/*if (posnode == NULL) {
+		printf("数据为空，无法修改");
+	}
+	if(strcmp(posnode->data.name,name)){
+		printf("请输入修改人的年龄电话地址");
+		scanf("%d%s%s", &posnode->data.age, &posnode->data.tel, &posnode->data.addr);
 	}
 	else
 	{
-		printf("请输入修改人的年龄电话地址");
-		scanf("%d%s%s", &S->data.age, &S->data.tel, &S->data.addr);
+		posnode = posnode->Next;
 	}
-
+*/
 	//struct Node* posnodefront =S;
-	/*if (posnode == NULL) {
+	if (posnode == NULL) {
 		printf("数据为空，无法修改");
 
 	}
 	else
 	{
-		while (strcmp(posnode->data.name, name)) {
+		while (!strcmp(posnode->data.name, name)) {
 			//posnodefront = posnode;
 			posnode = posnode->Next;
 			if (posnode == NULL) { printf("未找到指定位置，无法删除"); return; }
@@ -144,8 +147,8 @@ void changenode(struct Node* S) {
 		//posnodefront->Next = posnode->Next;
 		//free(posnode);
 		printf("请输入修改人的年龄电话地址");
-		scanf("%d%s%s",&S->data.age,&S->data.tel,&S->data.addr);
-	}*/
+		scanf("%d%s%s",&posnode->data.age,&posnode->data.tel,&posnode->data.addr);
+	}
 }
 
 
