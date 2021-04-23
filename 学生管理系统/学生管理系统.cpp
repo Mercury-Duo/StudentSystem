@@ -40,6 +40,7 @@ void KeyRecive() {
 	{
 	case 0:
 		InsertNode();
+		printf("插入成功！");
 		break;
 	case 1:
 		printf("\t【浏览信息】\n");
@@ -164,8 +165,14 @@ void PrintNode(struct Node* StudentNode){
 }
 int main(void) {
 	StudentNode = CreatNode();
-	SystemMenu();
-	while (1) { KeyRecive(); }
+	
+	while (1) { 
+		SystemMenu();
+		KeyRecive();
+		system("pause");
+		system("cls");
+		
+	}
 
 }
 	
