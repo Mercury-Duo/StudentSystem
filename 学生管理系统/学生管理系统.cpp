@@ -10,7 +10,7 @@ struct Node* CreatNewNode(struct Student data);
 void CreatNodeList(struct Node* HeadNode, struct Student data);
 void deletestudent();
 void deletenode(struct Node* headnode, char* name);
-void changenode(struct Node* S, char* name);
+void changenode(struct Node* S);
 void PrintNode(struct Node* StudentNode);
 struct Node* StudentNode;
 struct Student {
@@ -53,6 +53,7 @@ void KeyRecive() {
 		break;
 	case 3:
 		printf("\t【修改信息】\n");
+		changenode(StudentNode);
 		printf("修改完成");
 		break;
 	case 4:
@@ -114,9 +115,12 @@ void deletenode(struct Node* headnode, char *name) {
 		free(posnode);
 	}
 }
-void changenode(struct Node* S,char *name) {
+void changenode(struct Node* S) {
+	char name[10];
+	printf("请输入需要修改人名字");
+	scanf("%s",&name);
 	struct Node* posnode = S->Next;
-	struct Node* posnodefront =S;
+	//struct Node* posnodefront =S;
 	if (posnode == NULL) {
 		printf("数据为空，无法修改");
 
@@ -124,12 +128,14 @@ void changenode(struct Node* S,char *name) {
 	else
 	{
 		while (strcmp(posnode->data.name, name)) {
-			posnodefront = posnode;
-			posnode = posnodefront->Next;
+			//posnodefront = posnode;
+			posnode = posnode->Next;
 			if (posnode == NULL) { printf("未找到指定位置，无法删除"); return; }
 		}
-		posnodefront->Next = posnode->Next;
-		free(posnode);
+		//posnodefront->Next = posnode->Next;
+		//free(posnode);
+		printf("请输入修改人的年龄电话地址");
+		scanf("%d%s%s",&S->data.age,&S->data.tel,&S->data.addr);
 	}
 }
 
