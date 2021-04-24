@@ -11,7 +11,6 @@ struct Node* CreatNewNode(struct Student data);
 void CreatNodeList(struct Node* HeadNode, struct Student data);
 void deletestudent();
 void deletenode(struct Node* headnode, char* name);
-//struct Node* changenode(struct Node* S);
 struct Node* SearchNode(struct Node* StudentNode, char* name);
 void PrintNode(struct Node* StudentNode);
 void PrintList(struct Node* StudentNode);
