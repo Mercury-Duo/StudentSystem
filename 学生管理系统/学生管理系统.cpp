@@ -13,6 +13,7 @@ void deletenode(struct Node* headnode, char* name);
 //struct Node* changenode(struct Node* S);
 struct Node* SearchNode(struct Node* StudentNode, char* name);
 void PrintNode(struct Node* StudentNode);
+void PrintList(struct Node* StudentNode);
 struct Node* StudentNode;
 struct Student {
 	char name[20];//名字
@@ -29,15 +30,14 @@ void SystemMenu() {
 	printf("\t\t\t0.插入信息\n");
 	printf("\t\t\t1.浏览信息\n");
 	printf("\t\t\t2.删除信息\n");
+	printf("\t\t\t3.修改信息\n");
 	printf("\t\t\t3.查找信息\n");
-	printf("\t\t\t4.修改信息\n");
 	printf("\t\t\t5.退出系统\n");
 	printf("-----------------------------------------------------------------------------------\n");
 
 }
 void KeyRecive() {
-	int x;	char name[10];
-	struct Node* f;
+	int x;	struct Student s;
 	scanf("%d", &x);
 	switch (x)
 	{
@@ -56,17 +56,26 @@ void KeyRecive() {
 		printf("删除操作执行完成---------------");
 		break;
 	case 3:
-		printf("\t【修改信息】\n");
-		printf("请输入需要删除的学生名字");
-		scanf("%s", &name);
-	f= SearchNode(StudentNode,name);
-	printf("请输入需要更改的年龄电话和地址");
-		scanf("%d%s%s",&f->data.age,&f->data.tel,&f->data.addr);
+		printf("\t【更改信息】\n");
+		
 		printf("修改操作执行完成---------------");
 		break;
-	case 4:
+	case 5:
 		printf("\t【退出系统】\n");
 		exit(0);
+		break;
+	case 4:
+		printf("\t【查找信息】\n");
+		printf("请输入查找的姓名：");
+		scanf("%s",&s.name);
+		if (SearchNode(StudentNode, s.name) == NULL) {
+			printf("未找到相关信息！\n");
+		}
+		else
+		{
+			PrintList(SearchNode(StudentNode, s.name));
+		}
+		printf("查找操作执行完成---------------");
 		break;
 	default:printf("输入数据有误，重新输入");KeyRecive();
 		break;
@@ -83,7 +92,8 @@ void InsertNode() {
 		CreatNodeList(StudentNode,S);
 	}
 }
-struct Node* CreatNode() {
+struct Node* CreatNode() 
+{
 	struct Node* HeadNode = (struct Node*)malloc(sizeof(struct Node));
 	HeadNode->Next = NULL;
 	return HeadNode;
@@ -139,7 +149,8 @@ struct Node* SearchNode(struct Node* StudentNode, char* name) {
 	}
 }
 void PrintList(struct Node* StudentNode) {
-	printf("该学生的信息为%s%d%s%s",StudentNode->data.name,StudentNode->data.age,StudentNode->data.tel,StudentNode->data.addr);
+	printf("姓名\t年龄\t电话\t住址\n");
+	printf("%s\t%d\t%s\t%s\n",StudentNode->data.name,StudentNode->data.age,StudentNode->data.tel,StudentNode->data.addr);
 }
 void PrintNode(struct Node* StudentNode){
 	struct Node* pow = StudentNode->Next;
