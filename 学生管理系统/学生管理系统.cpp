@@ -15,7 +15,10 @@ void deletenode(struct Node* headnode, char* name);
 struct Node* SearchNode(struct Node* StudentNode, char* name);
 void PrintNode(struct Node* StudentNode);
 void PrintList(struct Node* StudentNode);
+void ReadFromFile(char* filename, struct Node* StudentNode);
+void SaveFile1(char* filename, struct Node* StudentNode);
 struct Node* StudentNode;
+char S1[5] = { 's','.','t','x','t' };
 struct Student {
 	char name[20];//名字
 	int age;//年龄
@@ -44,6 +47,7 @@ void KeyRecive() {
 	{
 	case 0:
 		InsertNode();
+		SaveFile1(S1, StudentNode);
 		printf("插入操作执行完成！-------------");
 		break;
 	case 1:
@@ -54,6 +58,7 @@ void KeyRecive() {
 	case 2:
 		printf("\t【删除信息】\n");
 		deletestudent();
+		SaveFile1(S1, StudentNode);
 		printf("删除操作执行完成---------------");
 		break;
 	case 3:
@@ -70,6 +75,7 @@ void KeyRecive() {
 			printf("请输入同学姓名，年龄，电话，住址");
 			scanf("%s%d%s%s", &s1->data.name, &s1->data.age, &s1->data.tel, &s1->data.addr);
 			printf("修改操作执行完成---------------");
+			SaveFile1(S1,StudentNode);
 		}
 		break;
 	case 5:
@@ -173,9 +179,31 @@ void PrintNode(struct Node* StudentNode){//浏览信息
 		pow = pow->Next;
 	}
 }
+void ReadFromFile(char *filename,struct Node* StudentNode){
+	FILE* fp = fopen(filename, "r");
+	if (fp == NULL) {
+		fp = fopen(filename, "w");
+	}
+	struct Student data;
+	while (fscanf(fp, "%s\t%d\t%s\t%s\n", &data.name, &data.age,
+		&data.tel, &data.addr) != EOF) {
+		CreatNodeList(StudentNode, data);
+		memset(&data, 0, sizeof(data));
+	}
+	fclose(fp);
+}
+void SaveFile1(char* filename, struct Node* StudentNode) {
+	FILE* fp = fopen(filename,"w");
+	struct Node* pow = StudentNode->Next;
+	while (pow) {
+		fprintf(fp,"%s\t%d\t%s\t%s\n", pow->data.name, pow->data.age, pow->data.tel, pow->data.addr);
+		pow = pow->Next;
+	}
+	fclose(fp);
+}
 int main(void) {
 	StudentNode = CreatNode();
-	
+	ReadFromFile(S1,StudentNode);
 	while (1) { 
 		SystemMenu();
 		KeyRecive();
